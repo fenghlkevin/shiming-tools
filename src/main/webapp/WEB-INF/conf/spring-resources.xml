@@ -23,6 +23,5 @@
 	
 <!-- 	<mvc:resources location="/WEB-INF/public/" mapping="/public/**"/>  -->
  	<mvc:resources location="/WEB-INF/view/js/" mapping="/resources/**"/>
- 		<!--<mvc:resources location="absolutepath:${TEMP_TPG_PATH}" mapping="/temp/tpg/**"/>-->
-
+	<mvc:resources location="absolutepath:${TEMP_TPG_PATH}" mapping="/temp/**"/>
 </beans>

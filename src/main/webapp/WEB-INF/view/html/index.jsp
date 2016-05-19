@@ -137,7 +137,7 @@
                     </div>
                     <div class="input-prepend col-md-4">
                         <span class="add-on">签名内容</span>
-                        <input id="sign_str" name="sign_str" type="text"  >
+                        <input id="sign_str" name="sign_str" type="text" value="我试试签名" >
                     </div>
 
                 </div>
@@ -151,8 +151,8 @@
             <div class="container-fluid">
 
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Sheet页码:</label>
-                    <input type="number" class="col-md-4" id="sheet_no" name="sheet_no" value="1">
+                    <label class="col-md-2 control-label">Sheet页名字:</label>
+                    <input type="text" class="col-md-4" id="sheet_no" name="sheet_no" value="Sheet1">
                     <label class="col-md-2 control-label">学生名字列号:</label>
                     <input type="number" class="col-md-4" id="student_name_no" name="student_name_no" value="2">
                 </div>
@@ -173,7 +173,7 @@
                 <br/>
                 <div class="form-group">
                     <label class="col-md-2 control-label">起始行:</label>
-                    <input type="number" class="col-md-4" id="start_row" name="start_row" value="4">
+                    <input type="number" class="col-md-4" id="start_row" name="start_row" value="2">
                     <label class="col-md-2 control-label">结束行:</label>
                     <input type="number" class="col-md-4" id="end_row" name="end_row" value="">
                 </div>
@@ -184,15 +184,15 @@
                 <div class="form-group">
                     <div class="input-prepend col-md-4">
                         <span class="add-on">第一次</span>
-                        <input class="span2" id="check_1" type="number" value="7">
+                        <input class="span2" id="last2_check" type="number" value="7">
                     </div>
                     <div class="input-prepend col-md-4">
                         <span class="add-on">第二次</span>
-                        <input class="span2" id="check_2" type="number" value="9">
+                        <input class="span2" id="last1_check" type="number" value="9">
                     </div>
                     <div class="input-prepend col-md-4">
                         <span class="add-on">第三次</span>
-                        <input class="span2" id="check_3" type="number" value="11">
+                        <input class="span2" id="this_check" type="number" value="11">
                     </div>
                 </div>
             </div>
@@ -203,10 +203,22 @@
         <div class="jumbotron">
             <div class="container-fluid">
                 <div class="form-group">
-                    <label class="col-md-2 control-label">输出Word文档模板:</label>
+                    <label class="col-md-2 control-label">输出Word文档模板(word_template.docx):</label>
                     <input type="file" class="col-md-4" id="word_template" name="word_template">
-                    <label class="col-md-2 control-label">条件判断文件:</label>
+                    <label class="col-md-2 control-label">条件判断文件(if_template.csv):</label>
                     <input type="file" class="col-md-4" id="if_file" name="if_file">
+                </div>
+            </div>
+            <%--</div>--%>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Main component for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container-fluid">
+                <div class="form-group">
+                    <button type="button" class="btn btn-default" onclick="createWord()">生成</button>
                 </div>
             </div>
             <%--</div>--%>
@@ -224,18 +236,22 @@
 <script type="text/javascript" src="resources/lib.js"></script>
 <script type="text/javascript">
     $(function () {
-        initDatepicker("last2_date", -2)
-        initDatepicker("last_date", -1)
-        initDatepicker("this_date", 0)
-        initDatepicker("sign_date", 0)
+        initDatepicker("last2_date", -2);
+        initDatepicker("last_date", -1);
+        initDatepicker("this_date", 0);
+        initDatepicker("sign_date", 0);
+
+        getFileData($("#input_file"),"input_file");
+        getFileData($("#word_template"),"word_template");
+        getFileData($("#if_file"),"if_file");
 
     });
 
     var initDatepicker = function (id, addyear) {
-        var mdate = new Date().addYears(addyear).toDateStr("yyyy-MM-dd");
+        var mdate = new Date().addYears(addyear).toDateStr("yyyy年MM月dd日");
         console.log(mdate);
         $("#" + id).datetimepicker({
-            format: "yyyy-mm-dd",
+            format: "yyyy年mm月dd日",
             weekStart: 0,
             todayBtn: true,
             autoclose: true,

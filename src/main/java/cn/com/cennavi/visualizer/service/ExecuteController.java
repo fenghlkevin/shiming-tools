@@ -6,6 +6,7 @@ import cn.com.cennavi.kfgis.framework.util.ObjUtil;
 import cn.com.cennavi.visualizer.common.contant.RestNameAPIContant;
 import cn.com.cennavi.visualizer.common.listener.ProjectContextListener;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -15,8 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class ExecuteController {
@@ -25,6 +28,8 @@ public class ExecuteController {
     @RequestMapping(value = RestNameAPIContant.EXCEL_TO_WORD, method = RequestMethod.POST)
     public ModelAndView excel2Word(@RestBeanVariable ExecuteParams params, HttpServletRequest request, HttpServletResponse response) throws Exception {
         //return executeService.execute();
+
+        JSONArray array=new JSONArray();
 
         ExecuteIfTemplateService ifTemplateService = new ExecuteIfTemplateService();
         ifTemplateService.execute(params.getIf_file());
@@ -36,17 +41,45 @@ public class ExecuteController {
         executeCompareService.compare(students,params,ifTemplateService);
 
         ExecuteWordService executeWordService=new ExecuteWordService();
-        XWPFDocument word=executeWordService.execute(students,params);
+        byte[] word=executeWordService.execute(students,params);
+        String wordFilename=createFile(word,"toword","docx");
+        array.put(wordFilename);
 
+        ExecuteGroupService executeGroupService=new ExecuteGroupService();
+        Map<String, List<String[]>> group= executeGroupService.execute(students);
+
+        ExecuteGroupExcelService groupExcelService=new ExecuteGroupExcelService();
+        Map<String, byte[]> excelMap=groupExcelService.execute(group);
+
+        for(Map.Entry<String, byte[]> excel: excelMap.entrySet()){
+            String key=excel.getKey();
+            byte[] value=excel.getValue();
+            String tfilename=createFile(word,"key","csv");
+            array.put(tfilename);
+        }
+
+//        JSONObject jsonObject = new JSONObject();
+//        jsonObject.put("filename",filename);
+        this.returnAjax(array.toString(), request, response);
         //生成临时文件，输出 TODO
 
         return null;
     }
-//
-//    @RequestMapping(value = RestNameAPIContant.Excel_GROUP, method = RequestMethod.POST)
-//    public IResult excelGroup(@RestBeanVariable ExecuteParams params, HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        return executeService.execute();
-//    }
+
+    private String createFile(byte[] bs,String filenamekey,String ext) throws IOException {
+        String filename=System.currentTimeMillis()+"_"+filenamekey+"."+ext;
+        String path=System.getProperty("TEMP_TPG_PATH")+ File.separator+filename;
+        File dir=new File(System.getProperty("TEMP_TPG_PATH"));
+        if(!dir.exists()||!dir.isDirectory()){
+            dir.mkdirs();
+        }
+
+        OutputStream out = new FileOutputStream(path);
+        out.write(bs);
+        out.flush();
+        out.close();
+        return filename;
+    }
 
     @RequestMapping(value = "/")
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response) {

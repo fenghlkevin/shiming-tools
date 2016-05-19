@@ -21,11 +21,11 @@ public class ExecuteParseExcelService {
     public List<Student> execute(ExecuteParams params) throws IOException {
         Workbook workbook = new HSSFWorkbook(new ByteArrayInputStream(SBase64.decode(params.getInput_file())));
 
-        Sheet sheet = workbook.getSheetAt(params.getSheet_no());
+        Sheet sheet = workbook.getSheet(params.getSheet_no());
         int allrow = params.getEnd_row() <= 0 ? sheet.getLastRowNum() : params.getEnd_row();
 
         List<Student> students = new ArrayList<Student>();
-        for (int i = params.getStart_row(); i <= allrow; i++) {
+        for (int i = params.getStart_row()-1; i <= allrow; i++) {
 
             Row row = sheet.getRow(i);
             Student student = new Student();

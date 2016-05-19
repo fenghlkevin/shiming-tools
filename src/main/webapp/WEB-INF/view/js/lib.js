@@ -27,6 +27,7 @@ document.write('<script type="text/javascript" src="resources/lib/bootstrap-tabl
 
 
 document.write('<script type="text/javascript" src="resources/project/index.js'+randomValue+'" charset="UTF-8"></script>');
+document.write('<script type="text/javascript" src="resources/project/mydate.js'+randomValue+'" charset="UTF-8"></script>');
 
 //bootstrap fileinput
 // document.write('<link href="resources/lib/bootstrap-fileinput/4.2.1/css/fileinput.min.css'+randomValue+'" rel="stylesheet" media="screen">');

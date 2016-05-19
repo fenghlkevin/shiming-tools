@@ -21,8 +21,8 @@ public class ExcelUtil {
         return temp;
     }
     public static String getCellValue(Row row, int index) {
-        HSSFCell cell= (HSSFCell) row.getCell(index);
-        DecimalFormat df = new DecimalFormat("#");
+        HSSFCell cell= (HSSFCell) row.getCell(index-1);
+        DecimalFormat df = new DecimalFormat("#.#");
         if (cell == null)
             return "";
         switch (cell.getCellType()) {

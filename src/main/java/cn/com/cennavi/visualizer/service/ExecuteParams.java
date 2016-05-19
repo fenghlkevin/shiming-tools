@@ -1,6 +1,7 @@
 package cn.com.cennavi.visualizer.service;
 
 import cn.com.cennavi.common.param.AbstractReqParams;
+import cn.com.cennavi.kfgis.framework.annotation.Ignore;
 
 /**
  * Created by fengh on 2016/5/13.
@@ -19,7 +20,7 @@ public class ExecuteParams extends AbstractReqParams {
 
     private String sign_str;
 
-    private int sheet_no;
+    private String sheet_no;
 
     private int student_name_no;
 
@@ -33,6 +34,7 @@ public class ExecuteParams extends AbstractReqParams {
 
     private int start_row;
 
+    @Ignore
     private int end_row;
 
     private int last2_check;
@@ -93,11 +95,11 @@ public class ExecuteParams extends AbstractReqParams {
         this.sign_str = sign_str;
     }
 
-    public int getSheet_no() {
+    public String getSheet_no() {
         return sheet_no;
     }
 
-    public void setSheet_no(int sheet_no) {
+    public void setSheet_no(String sheet_no) {
         this.sheet_no = sheet_no;
     }
 

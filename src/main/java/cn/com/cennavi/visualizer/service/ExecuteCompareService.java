@@ -87,37 +87,37 @@ public class ExecuteCompareService {
 
                     count = 3;
 
-                    left_change = (int) ((compareEye.getLast_left() - compareEye.getThis_left()) * 10);
-                    right_change = (int) ((compareEye.getLast_right() - compareEye.getThis_right()) * 10);
+                    left_change = (int) ((compareEye.getThis_left() - compareEye.getLast_left()) * 10);
+                    right_change = (int) (( compareEye.getThis_right()- compareEye.getLast_right()) * 10);
                 }
             }
 
             left_right_diff = Math.abs(((int) ((compareEye.getThis_left() - compareEye.getThis_right()) * 10)));
 
-            replaceMap.put("student_name", student.getStudent_name());
-            replaceMap.put("count", String.valueOf(count));
+            replaceMap.put("{student_name}", student.getStudent_name());
+            replaceMap.put("{count}", String.valueOf(count));
             ExecuteIfTemplateService.IfTemplate eye_state = ifTemplateService.getIf_EyeState().get(getEyeState(left_change, right_change));
-            replaceMap.put("eye_state", eye_state == null ? "" : eye_state.getDesc());
-            replaceMap.put("last2_year", getEyeDesc(student.getLast2_check_left(), student.getLast2_check_right(), params.getLast2_date()));
-            replaceMap.put("last1_year", getEyeDesc(student.getLast1_check_left(), student.getLast1_check_right(), params.getLast_date()));
-            replaceMap.put("this_year", getEyeDesc(student.getThis_check_left(), student.getThis_check_right(), params.getThis_date()));
+            replaceMap.put("{eye_state}", eye_state == null ? "" : eye_state.getDesc());
+            replaceMap.put("{last2_year}", getEyeDesc(student.getLast2_check_left(), student.getLast2_check_right(), params.getLast2_date()));
+            replaceMap.put("{last1_year}", getEyeDesc(student.getLast1_check_left(), student.getLast1_check_right(), params.getLast_date()));
+            replaceMap.put("{this_year}", getEyeDesc(student.getThis_check_left(), student.getThis_check_right(), params.getThis_date()));
 
-            replaceMap.put("eye_right_state", right_change <= 0 ? "下降" : "提升");
-            replaceMap.put("right_diff", String.valueOf(Math.abs(right_change)));
-            replaceMap.put("eye_left_state", left_change <= 0 ? "下降" : "提升");
-            replaceMap.put("left_diff", String.valueOf(Math.abs(left_change)));
+            replaceMap.put("{eye_right_state}", right_change <= 0 ? "下降" : "提升");
+            replaceMap.put("{right_diff}", String.valueOf(Math.abs(right_change)));
+            replaceMap.put("{eye_left_state}", left_change <= 0 ? "下降" : "提升");
+            replaceMap.put("{left_diff}", String.valueOf(Math.abs(left_change)));
 
             ExecuteIfTemplateService.IfTemplate descentSpeed = ifTemplateService.getIf_DescentSpeed().get(getDescentSpeed(left_change, right_change));
-            replaceMap.put("descent_speed", descentSpeed == null ? "" : descentSpeed.getDesc());
+            replaceMap.put("{descent_speed}", descentSpeed == null ? "" : descentSpeed.getDesc());
 
             ExecuteIfTemplateService.IfTemplate parallax = ifTemplateService.getIf_parallax().get(String.valueOf(left_right_diff));
-            replaceMap.put("parallax", parallax == null ? "" : parallax.getDesc());
+            replaceMap.put("{parallax}", parallax == null ? "" : parallax.getDesc());
 
-            ExecuteIfTemplateService.IfTemplate vision = ifTemplateService.getIf_vision().get(getVision(compareEye.getLast_left(), compareEye.getThis_right()));
-            replaceMap.put("vision", vision == null ? "" : vision.getDesc());
+            ExecuteIfTemplateService.IfTemplate vision = ifTemplateService.getIf_vision().get(getVision(compareEye.getThis_left(), compareEye.getThis_right()));
+            replaceMap.put("{vision}", vision == null ? "" : vision.getDesc());
 
-            replaceMap.put("sign_str",params.getSign_str());
-            replaceMap.put("sign_date",params.getSign_date());
+            replaceMap.put("{sign_str}",params.getSign_str());
+            replaceMap.put("{sign_date}",params.getSign_date());
 
             student.setReplaceMap(replaceMap);
         }
@@ -136,7 +136,7 @@ public class ExecuteCompareService {
             return "";
         }
 
-        return date+"右眼" + (right <= 0 ? "无数据" : right) + "左眼" + (left <= 0 ? "无数据" : right) + "；";
+        return date+"右眼" + (right <= 0 ? "无数据" : right) + "左眼" + (left <= 0 ? "无数据" : right);
 
 
     }

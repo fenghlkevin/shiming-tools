@@ -8,6 +8,10 @@ import cn.com.cennavi.kfgis.framework.annotation.Ignore;
  */
 public class ExecuteParams extends AbstractReqParams {
 
+    private String license;
+
+    private String domethod;
+
     private String input_file;
 
     private String last2_date;
@@ -18,6 +22,7 @@ public class ExecuteParams extends AbstractReqParams {
 
     private String sign_date;
 
+    @Ignore
     private String sign_str;
 
     private String sheet_no;
@@ -45,6 +50,7 @@ public class ExecuteParams extends AbstractReqParams {
 
     private String word_template;
 
+    @Ignore
     private String if_file;
 
     public String getInput_file() {
@@ -197,5 +203,21 @@ public class ExecuteParams extends AbstractReqParams {
 
     public void setThis_check(int this_check) {
         this.this_check = this_check;
+    }
+
+    public String getLicense() {
+        return license;
+    }
+
+    public void setLicense(String license) {
+        this.license = license;
+    }
+
+    public String getDomethod() {
+        return domethod;
+    }
+
+    public void setDomethod(String domethod) {
+        this.domethod = domethod;
     }
 }

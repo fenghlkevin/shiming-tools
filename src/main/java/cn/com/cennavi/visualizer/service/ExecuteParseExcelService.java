@@ -31,16 +31,20 @@ public class ExecuteParseExcelService {
             Student student = new Student();
 
             student.setStudent_name(ExcelUtil.getCellValue(row, params.getStudent_name_no()));
-            student.setMschool(ExcelUtil.getCellValue(row, params.getMclass()));
-            student.setMgrade(ExcelUtil.getCellValue(row, params.getMgrade()));
-            student.setMclass(ExcelUtil.getCellValue(row, params.getMclass()));
-            student.setMgroup(ExcelUtil.getCellValue(row, params.getMgroup()));
+
             student.setLast2_check_right(new Double(ExcelUtil.getCellValue(row, params.getLast2_check(), "-1")));
             student.setLast2_check_left(new Double(ExcelUtil.getCellValue(row, params.getLast2_check() + 1, "-1")));
             student.setLast1_check_right(new Double(ExcelUtil.getCellValue(row, params.getLast1_check(), "-1")));
             student.setLast1_check_left(new Double(ExcelUtil.getCellValue(row, params.getLast1_check() + 1, "-1")));
-            student.setThis_check_right(new Double(ExcelUtil.getCellValue(row, params.getThis_check(), "-1")));
-            student.setThis_check_left(new Double(ExcelUtil.getCellValue(row, params.getThis_check() + 1, "-1")));
+            if(!"2".equalsIgnoreCase(params.getDomethod())){
+                student.setThis_check_right(new Double(ExcelUtil.getCellValue(row, params.getThis_check(), "-1")));
+                student.setThis_check_left(new Double(ExcelUtil.getCellValue(row, params.getThis_check() + 1, "-1")));
+                student.setMschool(ExcelUtil.getCellValue(row, params.getMclass()));
+                student.setMgrade(ExcelUtil.getCellValue(row, params.getMgrade()));
+                student.setMclass(ExcelUtil.getCellValue(row, params.getMclass()));
+                student.setMgroup(ExcelUtil.getCellValue(row, params.getMgroup()));
+            }
+
             students.add(student);
         }
         return students;

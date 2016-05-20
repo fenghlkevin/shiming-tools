@@ -62,22 +62,22 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul id="menu" class="nav navbar-nav" style="display: none">
-                <li onclick="changeFunc(this,'bands','toword','container')" name="bands"><a href="#">生成Word</a></li>
-                <li onclick="changeFunc(this,'bands','toexcel','container')" name="bands"><a href="#">生成对比表</a></li>
-            </ul>
-            <form id="loginform" class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <input type="text" id="user_name" class="form-control" placeholder="Username">
-                </div>
-                <button type="button" class="btn btn-default" onclick="login()">Login</button>
-            </form>
-            <ul class="nav navbar-nav">
-                <li></li>
-                <li style="display: none" id="logoutbtn"><a href="#" onclick="logout()">logout</a></li>
-            </ul>
+            <%--<ul id="menu" class="nav navbar-nav" style="display: none">--%>
+            <%--<li onclick="changeFunc(this,'bands','toword','container')" name="bands"><a href="#">生成Word</a></li>--%>
+            <%--<li onclick="changeFunc(this,'bands','toexcel','container')" name="bands"><a href="#">生成对比表</a></li>--%>
+            <%--</ul>--%>
+            <%--<form id="loginform" class="navbar-form navbar-left" role="search">--%>
+            <%--<div class="form-group">--%>
+            <%--<input type="text" id="user_name" class="form-control" placeholder="Username">--%>
+            <%--</div>--%>
+            <%--<button type="button" class="btn btn-default" onclick="login()">Login</button>--%>
+            <%--</form>--%>
+            <%--<ul class="nav navbar-nav">--%>
+            <%--<li></li>--%>
+            <%--<li style="display: none" id="logoutbtn"><a href="#" onclick="logout()">logout</a></li>--%>
+            <%--</ul>--%>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://tool.chinaz.com/tools/md5.aspx" target="_blank">MD5生成</a></li>
+                <li><a href="http://tool.oschina.net/encrypt?type=3" target="_blank">BASE64</a></li>
                 <li><a href="http://tool.chinaz.com/Tools/unixtime.aspx" target="_blank">生成时间戳</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -97,20 +97,64 @@
 <%--</div>--%>
 <!-- /container -->
 
-<div id="toword" name="container" >
+<div id="toword" name="container">
 
     <div class="container">
         <!-- Main component for a primary marketing message or call to action -->
         <div class="jumbotron">
             <div class="container-fluid">
                 <div class="form-group">
+                    <button type="button" class="btn btn-danger" onclick="createWord()">生成</button>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">输入LICENSE:</label>
+                    <input type="text" class="col-md-4" id="license" name="license"
+                           value="MTQ4MTQ3MjAwMCPllYrllYrllYo=">
                     <label class="col-md-2 control-label">输入Excel文档:</label>
-                    <input type="file" class="col-md-4" id="input_file" name="input_file">
+                    <input type="file" class="col-md-2" id="input_file" name="input_file">
+
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <div class="btn-group col-md-4" role="group" aria-label="...">
+                        <button type="button" class="btn btn-primary" id="domethod-1" onclick="change_do('1')">生成三年结果数据</button>
+                        <button type="button" class="btn btn-success" id="domethod-2" onclick="change_do('2')">生成模板数据</button>
+                    </div>
                 </div>
             </div>
             <%--</div>--%>
         </div>
     </div>
+
+    <div class="container">
+        <!-- Main component for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container-fluid">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">输出Word文档模板(word_template.docx):</label>
+                    <input type="file" class="col-md-4" id="word_template" name="word_template">
+                    <div id="if_template_div">
+                        <label class="col-md-2 control-label">条件判断文件(if_template.if):</label>
+                        <input type="file" class="col-md-4" id="if_file" name="if_file">
+                    </div>
+                </div>
+            </div>
+            <%--</div>--%>
+        </div>
+    </div>
+
+    <%--<div class="container">--%>
+    <%--<!-- Main component for a primary marketing message or call to action -->--%>
+    <%--<div class="jumbotron">--%>
+    <%--<div class="container-fluid">--%>
+    <%--<div class="form-group">--%>
+    <%--<button type="button" class="btn btn-default" onclick="createWord()">生成</button>--%>
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+    <%--</div>--%>
+    <%--</div>--%>
 
     <div class="container">
         <!-- Main component for a primary marketing message or call to action -->
@@ -135,10 +179,10 @@
                         <span class="add-on">签名时间</span>
                         <input id="sign_date" name="sign_date" type="text" readonly class="form_datetime ">
                     </div>
-                    <div class="input-prepend col-md-4">
-                        <span class="add-on">签名内容</span>
-                        <input id="sign_str" name="sign_str" type="text" value="我试试签名" >
-                    </div>
+                    <%--<div class="input-prepend col-md-4">--%>
+                    <%--<span class="add-on">签名内容</span>--%>
+                    <%--<input id="sign_str" name="sign_str" type="text" value="我试试签名" >--%>
+                    <%--</div>--%>
 
                 </div>
             </div>
@@ -190,38 +234,12 @@
                         <span class="add-on">第二次</span>
                         <input class="span2" id="last1_check" type="number" value="9">
                     </div>
-                    <div class="input-prepend col-md-4">
+                    <div id="this_check_div" class="input-prepend col-md-4">
                         <span class="add-on">第三次</span>
                         <input class="span2" id="this_check" type="number" value="11">
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <!-- Main component for a primary marketing message or call to action -->
-        <div class="jumbotron">
-            <div class="container-fluid">
-                <div class="form-group">
-                    <label class="col-md-2 control-label">输出Word文档模板(word_template.docx):</label>
-                    <input type="file" class="col-md-4" id="word_template" name="word_template">
-                    <label class="col-md-2 control-label">条件判断文件(if_template.csv):</label>
-                    <input type="file" class="col-md-4" id="if_file" name="if_file">
-                </div>
-            </div>
-            <%--</div>--%>
-        </div>
-    </div>
-
-    <div class="container">
-        <!-- Main component for a primary marketing message or call to action -->
-        <div class="jumbotron">
-            <div class="container-fluid">
-                <div class="form-group">
-                    <button type="button" class="btn btn-default" onclick="createWord()">生成</button>
-                </div>
-            </div>
-            <%--</div>--%>
         </div>
     </div>
 </div>
@@ -241,17 +259,16 @@
         initDatepicker("this_date", 0);
         initDatepicker("sign_date", 0);
 
-        getFileData($("#input_file"),"input_file");
-        getFileData($("#word_template"),"word_template");
-        getFileData($("#if_file"),"if_file");
+        getFileData($("#input_file"), "input_file");
+        getFileData($("#word_template"), "word_template");
+        getFileData($("#if_file"), "if_file");
 
     });
 
     var initDatepicker = function (id, addyear) {
-        var mdate = new Date().addYears(addyear).toDateStr("yyyy年MM月dd日");
-        console.log(mdate);
+        var mdate = new Date().addYears(addyear).toDateStr("yyyy年MM月");
         $("#" + id).datetimepicker({
-            format: "yyyy年mm月dd日",
+            format: "yyyy年mm月",
             weekStart: 0,
             todayBtn: true,
             autoclose: true,
@@ -261,17 +278,17 @@
         });
         $("#" + id).val(mdate);
     }
-    
-    var changeFunc=function (theDiv,theDivName,theContainer,theContainerName) {
-        $.each($("li[name='"+theDivName+"']"),function (i,one) {
-            $(one).attr("class", "");
-        });
-        $(theDiv).attr("class","active");
 
-        $.each($("div[name='"+theContainerName+"']"),function (i,one) {
-            $(one).hide();
-        });
-        $("#"+theContainer).show();
-    }
+    //    var changeFunc=function (theDiv,theDivName,theContainer,theContainerName) {
+    //        $.each($("li[name='"+theDivName+"']"),function (i,one) {
+    //            $(one).attr("class", "");
+    //        });
+    //        $(theDiv).attr("class","active");
+    //
+    //        $.each($("div[name='"+theContainerName+"']"),function (i,one) {
+    //            $(one).hide();
+    //        });
+    //        $("#"+theContainer).show();
+    //    }
 </script>
 

@@ -12,26 +12,26 @@ public class ProjectContextListener implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		if(users==null){
-			users=new HashMap<String, User>();
-		}
-		Properties properties=System.getProperties();
-
-		Iterator<Object> iterator=properties.keySet().iterator();
-		users.put(MD5.getMD5Code("root").toUpperCase(),new User("root",0L));
-		Object obj=null;
-		while(iterator.hasNext()&&(obj=iterator.next())!=null&&obj instanceof String){
-			String t=(String)obj;
-			if(t.startsWith("glassuser.")){
-				String user_name=t.substring(10);
-				Long value=Long.valueOf(ObjUtil.isEmpty(properties.getProperty(t))?"0":properties.getProperty(t))*1000;
-				if(value.longValue()<System.currentTimeMillis()){
-					continue;
-				}
-
-				users.put(user_name,new User(user_name,value));
-			}
-		}
+//		if(users==null){
+//			users=new HashMap<String, User>();
+//		}
+//		Properties properties=System.getProperties();
+//
+//		Iterator<Object> iterator=properties.keySet().iterator();
+//		users.put(MD5.getMD5Code("root").toUpperCase(),new User("root",0L));
+//		Object obj=null;
+//		while(iterator.hasNext()&&(obj=iterator.next())!=null&&obj instanceof String){
+//			String t=(String)obj;
+//			if(t.startsWith("glassuser.")){
+//				String user_name=t.substring(10);
+//				Long value=Long.valueOf(ObjUtil.isEmpty(properties.getProperty(t))?"0":properties.getProperty(t))*1000;
+//				if(value.longValue()<System.currentTimeMillis()){
+//					continue;
+//				}
+//
+//				users.put(user_name,new User(user_name,value));
+//			}
+//		}
 	}
 
 	@Override

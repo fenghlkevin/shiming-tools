@@ -39,8 +39,8 @@ public class ExecuteGroupService {
             line[7] = getCompare(student.getLast2_check_left(), student.getLast1_check_left());
             line[8] = df.format(student.getThis_check_right());
             line[9] = df.format(student.getThis_check_left());
-            line[10] = getCompare(student.getLast1_check_right(), student.getThis_check_right());
-            line[11] = getCompare(student.getLast1_check_left(), student.getThis_check_left());
+            line[10] = getCompare(student.getLast2_check_right(), student.getThis_check_right());
+            line[11] = getCompare(student.getLast2_check_left(), student.getThis_check_left());
             groupStudents.add(line);
         }
         return group;

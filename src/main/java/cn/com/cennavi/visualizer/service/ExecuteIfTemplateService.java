@@ -1,5 +1,6 @@
 package cn.com.cennavi.visualizer.service;
 
+import cn.com.cennavi.kfgis.framework.util.ObjUtil;
 import cn.com.cennavi.kfgis.util.SBase64;
 import cn.com.cennavi.kfgis.util.csv.CSVReader;
 import cn.com.cennavi.kfgis.util.csv.CSVReaderImpl;
@@ -35,6 +36,9 @@ public class ExecuteIfTemplateService {
         String line[] = null;
 
         while ((line = csvReader.readNext()) != null) {
+            if(ObjUtil.isEmpty(line)){
+                continue;
+            }
             IfTemplate ifTemplate = new IfTemplate();
 
             ifTemplate.setPosition(line[0].trim());

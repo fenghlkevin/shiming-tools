@@ -20,11 +20,11 @@ document.write('<script type="text/javascript" src="resources/lib/bootstrap-date
 //document.write('<script type="text/javascript" src="resources/lib/highcharts/4.1.5/js/highcharts.js"></script>');
 
 //table组件
-document.write('<link href="resources/lib/bootstrap-table/1.8.1/bootstrap-table.min.css'+randomValue+'" rel="stylesheet" media="screen">');
-document.write('<script type="text/javascript" src="resources/lib/bootstrap-table/1.8.1/bootstrap-table.min.js'+randomValue+'" charset="UTF-8"></script>');
-//document.write('<script type="text/javascript" src="resources/lib/bootstrap-table/1.7.0/locale/bootstrap-table-zh-CN.min.js" charset="UTF-8"></script>');
-document.write('<script type="text/javascript" src="resources/lib/bootstrap-table/1.8.1/locale/bootstrap-table-en-US.min.js'+randomValue+'" charset="UTF-8"></script>');
+//document.write('<link href="resources/lib/bootstrap-table/1.8.1/bootstrap-table.min.css'+randomValue+'" rel="stylesheet" media="screen">');
+//document.write('<script type="text/javascript" src="resources/lib/bootstrap-table/1.8.1/bootstrap-table.min.js'+randomValue+'" charset="UTF-8"></script>');
+//document.write('<script type="text/javascript" src="resources/lib/bootstrap-table/1.8.1/locale/bootstrap-table-en-US.min.js'+randomValue+'" charset="UTF-8"></script>');
 
+document.write('<script type="text/javascript" src="resources/lib/jquery-base64/jquery.base64.min.js'+randomValue+'" charset="UTF-8"></script>');
 
 document.write('<script type="text/javascript" src="resources/project/index.js'+randomValue+'" charset="UTF-8"></script>');
 document.write('<script type="text/javascript" src="resources/project/mydate.js'+randomValue+'" charset="UTF-8"></script>');

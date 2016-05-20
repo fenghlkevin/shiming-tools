@@ -144,11 +144,8 @@ public class ExecuteWordService {
     private static final String END_TAG = "%}";
 
 
-    private void replacePattern(XWPFRun theRun, XWPFParagraph paragraph, int runPosition, String connectedRuns, String find, String repl) {
-
-        if (connectedRuns.indexOf("{vision}") >= 0 && find.equalsIgnoreCase("{vision}")) {
-            System.out.println();
-        }
+    private int replacePattern(XWPFRun theRun, XWPFParagraph paragraph, int runPosition, String connectedRuns, String find, String repl) {
+        int addRun=0;
         while (connectedRuns.indexOf(find) >= 0) {
             connectedRuns = connectedRuns.replace(find, repl);
         }
@@ -168,11 +165,13 @@ public class ExecuteWordService {
                 newRun = paragraph.insertNewRun(nextRunPosition++);
                 newRun.getCTR().set(theRun.getCTR());
                 newRun.setText(beforePattern, 0);
+                addRun++;
             }
 
             if (!"".equalsIgnoreCase(pattern)) {
                 newRun = paragraph.insertNewRun(nextRunPosition++);
                 newRun.getCTR().set(theRun.getCTR());
+                addRun++;
 
                 String _tempstr = pattern.substring(2, pattern.length() - 2);
                 String vs[] = _tempstr.split("#");
@@ -215,8 +214,10 @@ public class ExecuteWordService {
                 XWPFRun newRun = paragraph.insertNewRun(nextRunPosition++);
                 newRun.getCTR().set(theRun.getCTR());
                 newRun.setText(connectedRuns,0);
+                addRun++;
             }
         }
+        return addRun;
     }
 
     private long replaceInParagraphs(Map<String, String> replacements, List<XWPFParagraph> xwpfParagraphs) {
@@ -252,14 +253,14 @@ public class ExecuteWordService {
                         XWPFRun partOne = runs.get(found.getBeginRun());
 
                         String connectedRuns = b.toString();
-                        replacePattern(partOne, paragraph, found.getBeginRun(), connectedRuns, find, repl);
+                        int addrun=replacePattern(partOne, paragraph, found.getBeginRun(), connectedRuns, find, repl);
                         // The first Run receives the replaced String of all connected Runs
 //                        String replaced = connectedRuns.replace(find, repl);
 //                        partOne.setText(replaced, 0);
 
                         // replaceWithNewRun(replList, partOne, paragraph, found.getBeginRun(), find);
                         // Removing the text in the other Runs.
-                        for (int runPos = found.getBeginRun() + 1; runPos <= found.getEndRun(); runPos++) {
+                        for (int runPos = found.getBeginRun() +addrun+ 1; runPos <= found.getEndRun(); runPos++) {
                             XWPFRun partNext = runs.get(runPos);
                             partNext.setText("", 0);
                         }

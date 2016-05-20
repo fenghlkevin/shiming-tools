@@ -2,6 +2,7 @@ package cn.com.cennavi.visualizer.service;
 
 import cn.com.cennavi.common.param.AbstractReqParams;
 import cn.com.cennavi.kfgis.framework.annotation.Ignore;
+import cn.com.cennavi.kfgis.framework.annotation.NotNullValid;
 
 /**
  * Created by fengh on 2016/5/13.
@@ -22,7 +23,7 @@ public class ExecuteParams extends AbstractReqParams {
 
     private String sign_date;
 
-    @Ignore
+    @NotNullValid(false)
     private String sign_str;
 
     private String sheet_no;
@@ -39,7 +40,7 @@ public class ExecuteParams extends AbstractReqParams {
 
     private int start_row;
 
-    @Ignore
+    @NotNullValid(false)
     private int end_row;
 
     private int last2_check;
@@ -50,7 +51,7 @@ public class ExecuteParams extends AbstractReqParams {
 
     private String word_template;
 
-    @Ignore
+    @NotNullValid(false)
     private String if_file;
 
     public String getInput_file() {

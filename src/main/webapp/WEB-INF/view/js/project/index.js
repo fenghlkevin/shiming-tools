@@ -54,7 +54,6 @@ var createWord = function (btn) {
             }
 
         }
-
         params[tone.attr("id")] = tone.val();
 
     });
@@ -67,6 +66,7 @@ var createWord = function (btn) {
     params.input_file = files.input_file;
 
 
+    console.log(params);
     var url = path + "/excel2word?callback=?"
     $.post(url, params, function (result) {
         if(result.error===""){
@@ -87,7 +87,7 @@ var change_do = function (method) {
     if (domethod === "2") {
         $("#this_check_div").hide();
         $('#if_template_div').hide();
-        $('#domethod-1').attr('class','btn btn-success');
+        $('#domethod-1').attr('class','btn btn-defaut');
         $('#domethod-2').attr('class','btn btn-primary');
 
 
@@ -95,7 +95,7 @@ var change_do = function (method) {
         $("#this_check_div").show();
         $('#if_template_div').show();
         $('#domethod-1').attr('class','btn btn-primary');
-        $('#domethod-2').attr('class','btn btn-success');
+        $('#domethod-2').attr('class','btn btn-default');
     }
 }
 

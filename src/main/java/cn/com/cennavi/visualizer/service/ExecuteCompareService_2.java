@@ -45,10 +45,6 @@ public class ExecuteCompareService_2 {
             replaceMap.put("{last2_year}", getEyeDesc(student.getLast2_check_left(), student.getLast2_check_right(), params.getLast2_date()));
             replaceMap.put("{last1_year}", getEyeDesc(student.getLast1_check_left(), student.getLast1_check_right(), params.getLast_date()));
 
-
-            ExecuteIfTemplateService.IfTemplate vision = ifTemplateService.getIf_vision().get("5.3");
-            replaceMap.put("{vision}", vision == null ? "" : vision.getDesc());
-
             replaceMap.put("{sign_str}", params.getSign_str());
             replaceMap.put("{sign_date}", params.getSign_date());
 

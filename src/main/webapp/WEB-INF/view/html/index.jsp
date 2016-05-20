@@ -119,7 +119,7 @@
                 <div class="form-group">
                     <div class="btn-group col-md-4" role="group" aria-label="...">
                         <button type="button" class="btn btn-primary" id="domethod-1" onclick="change_do('1')">生成三年结果数据</button>
-                        <button type="button" class="btn btn-success" id="domethod-2" onclick="change_do('2')">生成模板数据</button>
+                        <button type="button" class="btn btn-default" id="domethod-2" onclick="change_do('2')">生成模板数据</button>
                     </div>
                 </div>
             </div>

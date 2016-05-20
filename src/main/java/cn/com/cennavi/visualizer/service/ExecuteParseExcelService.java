@@ -25,20 +25,20 @@ public class ExecuteParseExcelService {
         int allrow = params.getEnd_row() <= 0 ? sheet.getLastRowNum() : params.getEnd_row();
 
         List<Student> students = new ArrayList<Student>();
-        for (int i = params.getStart_row()-1; i <= allrow; i++) {
+        for (int i = params.getStart_row() - 1; i <= allrow; i++) {
 
             Row row = sheet.getRow(i);
             Student student = new Student();
 
             student.setStudent_name(ExcelUtil.getCellValue(row, params.getStudent_name_no()));
 
-            student.setLast2_check_right(new Double(ExcelUtil.getCellValue(row, params.getLast2_check(), "-1")));
-            student.setLast2_check_left(new Double(ExcelUtil.getCellValue(row, params.getLast2_check() + 1, "-1")));
-            student.setLast1_check_right(new Double(ExcelUtil.getCellValue(row, params.getLast1_check(), "-1")));
-            student.setLast1_check_left(new Double(ExcelUtil.getCellValue(row, params.getLast1_check() + 1, "-1")));
-            if(!"2".equalsIgnoreCase(params.getDomethod())){
-                student.setThis_check_right(new Double(ExcelUtil.getCellValue(row, params.getThis_check(), "-1")));
-                student.setThis_check_left(new Double(ExcelUtil.getCellValue(row, params.getThis_check() + 1, "-1")));
+            student.setLast2_check_right(getEyeValue(new Double(ExcelUtil.getCellValue(row, params.getLast2_check(), "-1"))));
+            student.setLast2_check_left(getEyeValue(new Double(ExcelUtil.getCellValue(row, params.getLast2_check() + 1, "-1"))));
+            student.setLast1_check_right(getEyeValue(new Double(ExcelUtil.getCellValue(row, params.getLast1_check(), "-1"))));
+            student.setLast1_check_left(getEyeValue(new Double(ExcelUtil.getCellValue(row, params.getLast1_check() + 1, "-1"))));
+            if (!"2".equalsIgnoreCase(params.getDomethod())) {
+                student.setThis_check_right(getEyeValue(new Double(ExcelUtil.getCellValue(row, params.getThis_check(), "-1"))));
+                student.setThis_check_left(getEyeValue(new Double(ExcelUtil.getCellValue(row, params.getThis_check() + 1, "-1"))));
                 student.setMschool(ExcelUtil.getCellValue(row, params.getMclass()));
                 student.setMgrade(ExcelUtil.getCellValue(row, params.getMgrade()));
                 student.setMclass(ExcelUtil.getCellValue(row, params.getMclass()));
@@ -50,6 +50,25 @@ public class ExecuteParseExcelService {
         return students;
     }
 
+    private double getEyeValue(Double d) {
+        if (d.doubleValue() >= 4) {
+            return d;
+        } else {
+            if (d.doubleValue() == 0.08) {
+                return 3.9D;
+            } else if (d.doubleValue() == 0.06) {
+                return 3.8D;
+            } else if (d.doubleValue() == 0.04) {
+                return 3.7D;
+            } else if (d.doubleValue() == 0.02) {
+                return 3.6D;
+            } else {
+                return -1D;
+            }
+        }
+
+    }
+
     public static class CompareEye {
         private double last_left;
 
@@ -59,7 +78,7 @@ public class ExecuteParseExcelService {
 
         private double this_right;
 
-        private int count=0;
+        private int count = 0;
 
         private String eye_state;
 
@@ -214,7 +233,7 @@ public class ExecuteParseExcelService {
 
     public static class Student {
 
-        private Map<String,String> replaceMap;
+        private Map<String, String> replaceMap;
 
         private String student_name;
 

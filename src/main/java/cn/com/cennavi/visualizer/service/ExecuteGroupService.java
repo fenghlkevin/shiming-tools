@@ -1,3 +1,4 @@
+
 package cn.com.cennavi.visualizer.service;
 
 import java.io.IOException;
@@ -19,7 +20,19 @@ public class ExecuteGroupService {
         Map<String, List<String[]>> group = new HashMap<String, List<String[]>>();
 
         for (ExecuteParseExcelService.Student student : students) {
-            String key = student.getMschool() + "_" + student.getMgrade() + "_" + student.getMclass() + "_" + student.getMgroup();
+
+            String key = "";
+            while (true) {
+                int count = 1;
+                key = student.getMschool() + "_" + student.getMgrade() + "_" + student.getMclass() + "_" + count;
+                if (group.containsKey(key) && group.get(key).size() > 25) {
+                    count++;
+                    key = student.getMschool() + "_" + student.getMgrade() + "_" + student.getMclass() + "_" + count;
+                } else {
+                    break;
+                }
+            }
+
             List<String[]> groupStudents = null;
             if (!group.containsKey(key)) {
                 groupStudents = new ArrayList<String[]>();

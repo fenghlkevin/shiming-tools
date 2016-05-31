@@ -56,7 +56,9 @@ public class ExecuteController {
 
                 JSONArray array = new JSONArray();
                 ExecuteIfTemplateService ifTemplateService = new ExecuteIfTemplateService();
-                ifTemplateService.execute(params.getIf_file());
+                if(params.getIf_file()!=null){
+                    ifTemplateService.execute(params.getIf_file());
+                }
 
                 ExecuteParseExcelService executeParseExcelService = new ExecuteParseExcelService();
                 List<ExecuteParseExcelService.Student> students = executeParseExcelService.execute(params);
@@ -64,23 +66,24 @@ public class ExecuteController {
                 if("2".equalsIgnoreCase(params.getDomethod())){
                     ExecuteCompareService_2 executeCompareService_2=new ExecuteCompareService_2();
                     executeCompareService_2.compare(students, params, ifTemplateService);
-                }else{
-                    ExecuteCompareService executeCompareService = new ExecuteCompareService();
-                    executeCompareService.compare(students, params, ifTemplateService);
-                }
 
-
-                ExecuteWordService executeWordService = new ExecuteWordService();
-                byte[] word = executeWordService.execute(students, params);
-                array.put(createFile(word, "toword", "docx"));
-
-                if(!"2".equalsIgnoreCase(params.getDomethod())){
+                    ExecuteWordService executeWordService = new ExecuteWordService();
+                    byte[] word = executeWordService.execute(students, params);
+                    array.put(createFile(word, "toword", "docx"));
+                }else if("3".equalsIgnoreCase(params.getDomethod())){
                     ExecuteGroupService executeGroupService = new ExecuteGroupService();
                     Map<String, List<String[]>> group = executeGroupService.execute(students);
 
                     ExecuteGroupExcelService groupExcelService = new ExecuteGroupExcelService();
                     byte[] excel = groupExcelService.execute(group);
                     array.put(createFile(excel, "toexcel", "xls"));
+                }else{
+                    ExecuteCompareService executeCompareService = new ExecuteCompareService();
+                    executeCompareService.compare(students, params, ifTemplateService);
+
+                    ExecuteWordService executeWordService = new ExecuteWordService();
+                    byte[] word = executeWordService.execute(students, params);
+                    array.put(createFile(word, "toword", "docx"));
                 }
 
                 jsonObject.put("files", array);

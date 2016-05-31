@@ -110,16 +110,17 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label">输入LICENSE:</label>
                     <input type="text" class="col-md-4" id="license" name="license"
-                           value="MTQ4MTQ3MjAwMCPllYrllYrllYo=">
+                           value=""><!-- MTQ4MTQ3MjAwMCPllYrllYrllYo= -->
                     <label class="col-md-2 control-label">输入Excel文档:</label>
                     <input type="file" class="col-md-2" id="input_file" name="input_file">
 
                 </div>
                 <br><br>
                 <div class="form-group">
-                    <div class="btn-group col-md-4" role="group" aria-label="...">
+                    <div class="btn-group col-md-6" role="group" aria-label="...">
                         <button type="button" class="btn btn-primary" id="domethod-1" onclick="change_do('1')">生成三年结果数据</button>
                         <button type="button" class="btn btn-default" id="domethod-2" onclick="change_do('2')">生成模板数据</button>
+                        <button type="button" class="btn btn-default" id="domethod-3" onclick="change_do('3')">生成前两年Excel数据</button>
                     </div>
                 </div>
             </div>
@@ -132,8 +133,10 @@
         <div class="jumbotron">
             <div class="container-fluid">
                 <div class="form-group">
-                    <label class="col-md-2 control-label">输出Word文档模板(word_template.docx):</label>
-                    <input type="file" class="col-md-4" id="word_template" name="word_template">
+                    <div id="word_template_div">
+                        <label class="col-md-2 control-label">输出Word文档模板(word_template.docx):</label>
+                        <input type="file" class="col-md-4" id="word_template" name="word_template">
+                    </div>
                     <div id="if_template_div">
                         <label class="col-md-2 control-label">条件判断文件(if_template.if):</label>
                         <input type="file" class="col-md-4" id="if_file" name="if_file">

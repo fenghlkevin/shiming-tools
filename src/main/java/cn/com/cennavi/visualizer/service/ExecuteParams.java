@@ -49,6 +49,7 @@ public class ExecuteParams extends AbstractReqParams {
 
     private int this_check;
 
+    @NotNullValid(false)
     private String word_template;
 
     @NotNullValid(false)

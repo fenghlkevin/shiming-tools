@@ -27,7 +27,8 @@ public class ExecuteGroupService {
             }
             groupStudents = group.get(key);
 
-            String[] line = new String[12];
+//            String[] line = new String[12];
+            String[] line = new String[8];
 
             line[0] = String.valueOf(groupStudents.size() + 1);
             line[1] = student.getStudent_name();
@@ -37,10 +38,10 @@ public class ExecuteGroupService {
             line[5] = df.format(student.getLast1_check_left());
             line[6] = getCompare(student.getLast2_check_right(), student.getLast1_check_right());
             line[7] = getCompare(student.getLast2_check_left(), student.getLast1_check_left());
-            line[8] = df.format(student.getThis_check_right());
-            line[9] = df.format(student.getThis_check_left());
-            line[10] = getCompare(student.getLast2_check_right(), student.getThis_check_right());
-            line[11] = getCompare(student.getLast2_check_left(), student.getThis_check_left());
+//            line[8] = df.format(student.getThis_check_right());
+//            line[9] = df.format(student.getThis_check_left());
+//            line[10] = getCompare(student.getLast2_check_right(), student.getThis_check_right());
+//            line[11] = getCompare(student.getLast2_check_left(), student.getThis_check_left());
             groupStudents.add(line);
         }
         return group;

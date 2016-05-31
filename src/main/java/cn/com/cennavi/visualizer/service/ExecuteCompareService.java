@@ -129,12 +129,16 @@ public class ExecuteCompareService {
     }
 
     private String getSuggest(double left, double right, int diff) {
+        String diffS=String.valueOf(diff);
+        if(diff>5){
+            diffS="more";
+        }
         if (left <= 0) {
             return String.valueOf(right) + "_noleft";
         } else if (right <= 0) {
             return String.valueOf(left) + "_noright";
         } else {
-            return left <= right ? String.valueOf(left) + "_p" + diff : String.valueOf(right) + "_p" + diff;
+            return left <= right ? String.valueOf(left) + "_p" + diffS : String.valueOf(right) + "_p" + diffS;
         }
     }
 

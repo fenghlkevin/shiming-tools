@@ -87,15 +87,24 @@ var change_do = function (method) {
     if (domethod === "2") {
         $("#this_check_div").hide();
         $('#if_template_div').hide();
+        $('#word_template_div').show();
         $('#domethod-1').attr('class','btn btn-defaut');
         $('#domethod-2').attr('class','btn btn-primary');
-
-
+        $('#domethod-3').attr('class','btn btn-defaut');
+    }else if (domethod === "3") {
+        $("#this_check_div").hide();
+        $('#if_template_div').hide();
+        $('#word_template_div').hide();
+        $('#domethod-1').attr('class','btn btn-defaut');
+        $('#domethod-2').attr('class','btn btn-defaut');
+        $('#domethod-3').attr('class','btn btn-primary');
     } else {
         $("#this_check_div").show();
         $('#if_template_div').show();
+        $('#word_template_div').show();
         $('#domethod-1').attr('class','btn btn-primary');
         $('#domethod-2').attr('class','btn btn-default');
+        $('#domethod-3').attr('class','btn btn-defaut');
     }
 }
 

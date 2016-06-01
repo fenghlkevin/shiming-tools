@@ -141,9 +141,6 @@ public class ExecuteWordService {
 //    }
 
     private static final String START_TAG = "{%";
-    private static final String END_TAG = "%}";
-
-
     private int replacePattern(XWPFRun theRun, XWPFParagraph paragraph, int runPosition, String connectedRuns, String find, String repl) {
         int addRun=0;
         while (connectedRuns.indexOf(find) >= 0) {
@@ -220,6 +217,9 @@ public class ExecuteWordService {
         return addRun;
     }
 
+
+    private static final String END_TAG = "%}";
+
     private long replaceInParagraphs(Map<String, String> replacements, List<XWPFParagraph> xwpfParagraphs) {
         long count = 0;
         for (XWPFParagraph paragraph : xwpfParagraphs) {
@@ -249,6 +249,7 @@ public class ExecuteWordService {
                             XWPFRun run = runs.get(runPos);
                             b.append(run.getText(run.getTextPosition()));
                         }
+                        int ocount=found.getEndRun()-found.getBeginRun();
 
                         XWPFRun partOne = runs.get(found.getBeginRun());
 
@@ -260,7 +261,9 @@ public class ExecuteWordService {
 
                         // replaceWithNewRun(replList, partOne, paragraph, found.getBeginRun(), find);
                         // Removing the text in the other Runs.
-                        for (int runPos = found.getBeginRun() +addrun+ 1; runPos <= found.getEndRun(); runPos++) {
+                        int runPos = found.getBeginRun() +addrun+ 1;
+                        int lastPos=found.getBeginRun() +addrun+ocount;
+                        for (; runPos <= lastPos; runPos++) {
                             XWPFRun partNext = runs.get(runPos);
                             partNext.setText("", 0);
                         }

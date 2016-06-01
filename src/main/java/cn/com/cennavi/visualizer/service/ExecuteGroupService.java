@@ -1,6 +1,8 @@
 
 package cn.com.cennavi.visualizer.service;
 
+import cn.com.cennavi.visualizer.util.EyeUtil;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -45,10 +47,10 @@ public class ExecuteGroupService {
 
             line[0] = String.valueOf(groupStudents.size() + 1);
             line[1] = student.getStudent_name();
-            line[2] = df.format(student.getLast2_check_right());
-            line[3] = df.format(student.getLast2_check_left());
-            line[4] = df.format(student.getLast1_check_right());
-            line[5] = df.format(student.getLast1_check_left());
+            line[2] = EyeUtil.getRealEye(student.getLast2_check_right());
+            line[3] = EyeUtil.getRealEye(student.getLast2_check_left());
+            line[4] = EyeUtil.getRealEye(student.getLast1_check_right());
+            line[5] = EyeUtil.getRealEye(student.getLast1_check_left());
             line[6] = getCompare(student.getLast2_check_right(), student.getLast1_check_right());
             line[7] = getCompare(student.getLast2_check_left(), student.getLast1_check_left());
 //            line[8] = df.format(student.getThis_check_right());

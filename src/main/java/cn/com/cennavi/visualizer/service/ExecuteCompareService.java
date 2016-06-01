@@ -1,5 +1,7 @@
 package cn.com.cennavi.visualizer.service;
 
+import cn.com.cennavi.visualizer.util.EyeUtil;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -147,7 +149,7 @@ public class ExecuteCompareService {
             return "";
         }
 
-        return date + "右眼" + (right <= 0 ? "无数据" : right) + "左眼" + (left <= 0 ? "无数据" : left);
+        return date + "右眼" + (right <= 0 ? "无数据" : EyeUtil.getRealEye(right)) + "左眼" + (left <= 0 ? "无数据" : EyeUtil.getRealEye(left));
 
 
     }

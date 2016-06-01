@@ -15,14 +15,14 @@ public class ExcelUtil {
 
     public static String getCellValue(Row row, int index,String defaultValue) {
         String temp=getCellValue(row,index);
-        if(ObjUtil.isEmpty(temp)){
+        if(ObjUtil.isEmpty(temp)||"#N/A".equalsIgnoreCase(temp.trim())||"0".equalsIgnoreCase(temp.trim())){
             return defaultValue;
         }
         return temp;
     }
     public static String getCellValue(Row row, int index) {
         HSSFCell cell= (HSSFCell) row.getCell(index-1);
-        DecimalFormat df = new DecimalFormat("#.#");
+        DecimalFormat df = new DecimalFormat("#.##");
         if (cell == null)
             return "";
         switch (cell.getCellType()) {

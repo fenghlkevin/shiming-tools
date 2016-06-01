@@ -110,7 +110,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label">输入LICENSE:</label>
                     <input type="text" class="col-md-4" id="license" name="license"
-                           value=""><!-- MTQ4MTQ3MjAwMCPllYrllYrllYo= -->
+                           value="MTQ4MTQ3MjAwMCPllYrllYrllYo="><!-- MTQ4MTQ3MjAwMCPllYrllYrllYo= -->
                     <label class="col-md-2 control-label">输入Excel文档:</label>
                     <input type="file" class="col-md-2" id="input_file" name="input_file">
 

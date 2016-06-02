@@ -1,5 +1,6 @@
 package cn.com.cennavi.visualizer.service;
 
+import cn.com.cennavi.kfgis.framework.util.ObjUtil;
 import cn.com.cennavi.kfgis.util.SBase64;
 import cn.com.cennavi.visualizer.util.ExcelUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -31,6 +32,10 @@ public class ExecuteParseExcelService {
             Student student = new Student();
 
             student.setStudent_name(ExcelUtil.getCellValue(row, params.getStudent_name_no()));
+
+            if(ObjUtil.isEmpty(student.getStudent_name())){
+                continue;
+            }
 
             student.setLast2_check_right(getEyeValue(new Double(ExcelUtil.getCellValue(row, params.getLast2_check(), "-1"))));
             student.setLast2_check_left(getEyeValue(new Double(ExcelUtil.getCellValue(row, params.getLast2_check() + 1, "-1"))));

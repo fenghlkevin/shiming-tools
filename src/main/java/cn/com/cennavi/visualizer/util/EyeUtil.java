@@ -17,10 +17,18 @@ public class EyeUtil {
             return "0.04";
         } else if (eye == 3.6) {
             return "0.02";
-        } else if(eye>4L){
+        } else if (eye == 5L) {
+            return "5.0";
+        } else if (eye == 4L) {
+            return "4.0";
+        } else if (eye > 4L) {
             return df.format(eye);
-        }else{
+        } else {
             return "0";
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(EyeUtil.getRealEye(5));
     }
 }

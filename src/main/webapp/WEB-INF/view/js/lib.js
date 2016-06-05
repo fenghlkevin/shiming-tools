@@ -13,11 +13,15 @@ document.write('<link rel="stylesheet" href="resources/lib/bootstrap/3.3.4/css/b
 document.write(' <script src="resources/lib/bootstrap/3.3.4/js/bootstrap.min.js'+randomValue+'"></script>');
 
 //时间组件
-document.write('<link href="resources/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css'+randomValue+'" rel="stylesheet" media="screen">');
-document.write('<script type="text/javascript" src="resources/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js'+randomValue+'" charset="UTF-8"></script>');
-document.write('<script type="text/javascript" src="resources/lib/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>');
+//document.write('<link href="resources/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css'+randomValue+'" rel="stylesheet" media="screen">');
+//document.write('<script type="text/javascript" src="resources/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js'+randomValue+'" charset="UTF-8"></script>');
+//document.write('<script type="text/javascript" src="resources/lib/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>');
 //document.write('<script type="text/javascript" src="resources/lib/highstock/2.1.5/js/highstock.js"></script>');
 //document.write('<script type="text/javascript" src="resources/lib/highcharts/4.1.5/js/highcharts.js"></script>');
+
+document.write('<link href="resources/lib/mobiscroll/css/mobiscroll.custom-3.0.0-beta.min.css'+randomValue+'" rel="stylesheet" media="screen">');
+document.write('<script type="text/javascript" src="resources/lib/mobiscroll/js/mobiscroll.custom-3.0.0-beta.min.js'+randomValue+'" charset="UTF-8"></script>');
+
 
 //table组件
 //document.write('<link href="resources/lib/bootstrap-table/1.8.1/bootstrap-table.min.css'+randomValue+'" rel="stylesheet" media="screen">');

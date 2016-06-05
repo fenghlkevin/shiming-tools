@@ -110,7 +110,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label">输入LICENSE:</label>
                     <input type="text" class="col-md-4" id="license" name="license"
-                           value=""><!-- MTQ4MTQ3MjAwMCPllYrllYrllYo= -->
+                           value="MTQ4MTQ3MjAwMCPllYrllYrllYo="><!-- MTQ4MTQ3MjAwMCPllYrllYrllYo= -->
                     <label class="col-md-2 control-label">输入Excel文档:</label>
                     <input type="file" class="col-md-2" id="input_file" name="input_file">
 
@@ -257,10 +257,11 @@
 <script type="text/javascript" src="resources/lib.js"></script>
 <script type="text/javascript">
     $(function () {
-        initDatepicker("last2_date", -2);
-        initDatepicker("last_date", -1);
-        initDatepicker("this_date", 0);
-        initDatepicker("sign_date", 0);
+
+        initDatePicker("last2_date", -2);
+        initDatePicker("last_date", -1);
+        initDatePicker("this_date", 0);
+        initDatePicker("sign_date", 0);
 
         getFileData($("#input_file"), "input_file");
         getFileData($("#word_template"), "word_template");
@@ -268,19 +269,19 @@
 
     });
 
-    var initDatepicker = function (id, addyear) {
-        var mdate = new Date().addYears(addyear).toDateStr("yyyy年MM月");
-        $("#" + id).datetimepicker({
-            format: "yyyy年mm月",
-            weekStart: 0,
-            todayBtn: true,
-            autoclose: true,
-            todayHighlight: 1,
-            startView: 'month',
-            minView: 'month',
-        });
-        $("#" + id).val(mdate);
-    }
+//    var initDatepicker = function (id, addyear) {
+//        var mdate = new Date().addYears(addyear).toDateStr("yyyy年MM月");
+//        $("#" + id).datetimepicker({
+//            format: "yyyy年mm月",
+//            weekStart: 0,
+//            todayBtn: true,
+//            autoclose: true,
+//            todayHighlight: 1,
+//            startView: 'month',
+//            minView: 'month',
+//        });
+//        $("#" + id).val(mdate);
+//    }
 
     //    var changeFunc=function (theDiv,theDivName,theContainer,theContainerName) {
     //        $.each($("li[name='"+theDivName+"']"),function (i,one) {

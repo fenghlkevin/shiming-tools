@@ -138,21 +138,20 @@ function getFileData(fileinput, thefileKey) {
 
 var times, sign_str
 
-// var readLicense = function (fileinput) {
-//     var temp = fileinput.val();
-//     temp = $.base64.decode(temp);
-//     console.log(temp);
-//     times = temp[0];
-//     sign_str = temp[1];
-// }
+var initDatePicker = function (id,addyear) {
+    var clean_time_item = $("#" + id);
+    var the_date = the_date = new Date().addYears(addyear)
 
-// function dec2Bin(d) {
-//     var b = '';
-//
-//     for (var i = 0; i < 8; i++) {
-//         b = (d%2) + b;
-//         d = Math.floor(d/2);
-//     }
-//
-//     return b;
-// }
+    var time_param = {
+        theme: '',      // Specify theme like: theme: 'ios' or omit setting to use default
+        lang: 'zh',    // Specify language like: lang: 'pl' or omit setting to use default
+        display: 'bottom',  // Specify display mode like: display: 'bottom' or omit setting to use default
+        defaultValue: the_date,
+        dateFormat: 'yy-mm-dd',
+        //min: new Date().addDays(1)
+    };
+
+    clean_time_item.mobiscroll().date(time_param);
+    clean_time_item.val(the_date.toDateStr('yyyy-MM-dd'))
+    //$('#clean_time').mobiscroll('show');
+}

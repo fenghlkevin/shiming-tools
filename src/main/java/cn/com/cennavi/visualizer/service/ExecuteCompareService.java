@@ -14,6 +14,9 @@ public class ExecuteCompareService {
     public void compare(java.util.List<ExecuteParseExcelService.Student> students, ExecuteParams params, ExecuteIfTemplateService ifTemplateService) {
 
         for (ExecuteParseExcelService.Student student : students) {
+//            if(student.getStudent_name().equalsIgnoreCase("尚尔涵")){
+//                System.out.println();
+//            }
             Map<String, String> replaceMap = new HashMap<String, String>();
 
             ExecuteParseExcelService.CompareEye compareEye = new ExecuteParseExcelService.CompareEye();
@@ -25,78 +28,79 @@ public class ExecuteCompareService {
             boolean no_right = student.getLast2_check_right() <= 0 && student.getLast1_check_right() <= 0 && student.getThis_check_right() <= 0;
 
             int count;
-            int left_change, right_change;
+            int left_change = 0, right_change = 0;
             int left_right_diff;
 
             if (no_this && no_last1 && no_last2) {
-                continue;
+                count = 3;
+            } else if (no_last2 && no_last1) {
+                compareEye.setThis_left(student.getThis_check_left());
+                compareEye.setThis_right(student.getThis_check_right());
+                count = 1;
+                left_change = 0;
+                right_change = 0;
+            } else if (no_last1 && no_this) {
+                compareEye.setThis_left(student.getLast2_check_left());
+                compareEye.setThis_right(student.getLast2_check_right());
+                count = 1;
+                left_change = 0;
+                right_change = 0;
+            } else if (no_last2 && no_this) {
+                compareEye.setThis_left(student.getLast1_check_left());
+                compareEye.setThis_right(student.getLast1_check_right());
+                count = 1;
+                left_change = 0;
+                right_change = 0;
+            } else if (no_this) {
+                compareEye.setThis_left(student.getLast1_check_left());
+                compareEye.setThis_right(student.getLast1_check_right());
+
+                compareEye.setLast_left(student.getLast2_check_left());
+                compareEye.setLast_right(student.getLast2_check_right());
+
+                count = 2;
+
+                left_change = (int) ((compareEye.getLast_left() - compareEye.getThis_left()) * 10);
+                right_change = (int) ((compareEye.getLast_right() - compareEye.getThis_right()) * 10);
+            } else if (no_last1) {
+                compareEye.setThis_left(student.getThis_check_left());
+                compareEye.setThis_right(student.getThis_check_right());
+
+                compareEye.setLast_left(student.getLast2_check_left());
+                compareEye.setLast_right(student.getLast2_check_right());
+
+                count = 2;
+
+                left_change = (int) ((compareEye.getLast_left() - compareEye.getThis_left()) * 10);
+                right_change = (int) ((compareEye.getLast_right() - compareEye.getThis_right()) * 10);
+            } else if (no_last2) {
+                compareEye.setThis_left(student.getThis_check_left());
+                compareEye.setThis_right(student.getThis_check_right());
+
+                compareEye.setLast_left(student.getLast1_check_left());
+                compareEye.setLast_right(student.getLast1_check_right());
+
+                count = 2;
+
+                left_change = (int) ((compareEye.getLast_left() - compareEye.getThis_left()) * 10);
+                right_change = (int) ((compareEye.getLast_right() - compareEye.getThis_right()) * 10);
             } else {
-                if (no_last2 && no_last1) {
-                    compareEye.setThis_left(student.getThis_check_left());
-                    compareEye.setThis_right(student.getThis_check_right());
-                    count = 1;
-                    left_change = 0;
-                    right_change = 0;
-                } else if (no_last1 && no_this) {
-                    compareEye.setThis_left(student.getLast2_check_left());
-                    compareEye.setThis_right(student.getLast2_check_right());
-                    count = 1;
-                    left_change = 0;
-                    right_change = 0;
-                } else if (no_last2 && no_this) {
-                    compareEye.setThis_left(student.getLast1_check_left());
-                    compareEye.setThis_right(student.getLast1_check_right());
-                    count = 1;
-                    left_change = 0;
-                    right_change = 0;
-                } else if (no_this) {
-                    compareEye.setThis_left(student.getLast1_check_left());
-                    compareEye.setThis_right(student.getLast1_check_right());
+//                compareEye.setLast_left(Math.min(student.getLast2_check_left(), student.getLast1_check_left()));
+//                compareEye.setLast_right(Math.min(student.getLast2_check_right(), student.getLast1_check_right()));
+                compareEye.setLast_left(student.getLast2_check_left());
+                compareEye.setLast_right(student.getLast2_check_right());
 
-                    compareEye.setLast_left(student.getLast2_check_left());
-                    compareEye.setLast_right(student.getLast2_check_right());
+                compareEye.setThis_left(student.getThis_check_left());
+                compareEye.setThis_right(student.getThis_check_right());
 
-                    count = 2;
+                count = 3;
 
-                    left_change = (int) ((compareEye.getLast_left() - compareEye.getThis_left()) * 10);
-                    right_change = (int) ((compareEye.getLast_right() - compareEye.getThis_right()) * 10);
-                } else if (no_last1) {
-                    compareEye.setThis_left(student.getThis_check_left());
-                    compareEye.setThis_right(student.getThis_check_right());
-
-                    compareEye.setLast_left(student.getLast2_check_left());
-                    compareEye.setLast_right(student.getLast2_check_right());
-
-                    count = 2;
-
-                    left_change = (int) ((compareEye.getLast_left() - compareEye.getThis_left()) * 10);
-                    right_change = (int) ((compareEye.getLast_right() - compareEye.getThis_right()) * 10);
-                } else if (no_last2) {
-                    compareEye.setThis_left(student.getThis_check_left());
-                    compareEye.setThis_right(student.getThis_check_right());
-
-                    compareEye.setLast_left(student.getLast1_check_left());
-                    compareEye.setLast_right(student.getLast1_check_right());
-
-                    count = 2;
-
-                    left_change = (int) ((compareEye.getLast_left() - compareEye.getThis_left()) * 10);
-                    right_change = (int) ((compareEye.getLast_right() - compareEye.getThis_right()) * 10);
-                } else {
-                    compareEye.setLast_left(Math.min(student.getLast2_check_left(), student.getLast1_check_left()));
-                    compareEye.setLast_right(Math.min(student.getLast2_check_right(), student.getLast1_check_right()));
-
-                    compareEye.setThis_left(student.getThis_check_left());
-                    compareEye.setThis_right(student.getThis_check_right());
-
-                    count = 3;
-
-                    left_change = (int) ((compareEye.getThis_left()* 10 - compareEye.getLast_left()* 10) );
-                    right_change = (int) ((compareEye.getThis_right()* 10 - compareEye.getLast_right()* 10));
-                }
+                left_change = (int) ((compareEye.getThis_left() * 10 - compareEye.getLast_left() * 10));
+                right_change = (int) ((compareEye.getThis_right() * 10 - compareEye.getLast_right() * 10));
             }
+//            }
 
-            left_right_diff = Math.abs(((int) ((compareEye.getThis_left()* 10 - compareEye.getThis_right()* 10) )));
+            left_right_diff = Math.abs(((int) ((compareEye.getThis_left() * 10 - compareEye.getThis_right() * 10))));
 
             replaceMap.put("{student_name}", student.getStudent_name());
             replaceMap.put("{count}", String.valueOf(count));
@@ -123,6 +127,16 @@ public class ExecuteCompareService {
             ExecuteIfTemplateService.IfTemplate suggest = ifTemplateService.getIf_template_condition().get("suggest").get(getSuggest(compareEye.getThis_left(), compareEye.getThis_right(), left_right_diff));
             replaceMap.put("{suggest}", suggest == null ? "" : suggest.getDesc());
 
+            Map<String, ExecuteIfTemplateService.IfTemplate> vision_warn_map = ifTemplateService.getIf_template_condition().get("vision_warn");
+            if (vision_warn_map != null) {
+                ExecuteIfTemplateService.IfTemplate vision_warn = vision_warn_map.get(getVision_warn(left_change, right_change));
+                replaceMap.put("{vision_warn}", vision_warn == null ? "" : vision_warn.getDesc());
+            }
+
+
+//            ExecuteIfTemplateService.IfTemplate warning = ifTemplateService.getIf_template_condition().get("warning").get(getSuggest(compareEye.getThis_left(), compareEye.getThis_right(), left_right_diff));
+//            replaceMap.put("{warning}", warning == null ? "" : warning.getDesc());
+
             replaceMap.put("{sign_str}", params.getSign_str());
             replaceMap.put("{sign_date}", params.getSign_date());
 
@@ -130,10 +144,36 @@ public class ExecuteCompareService {
         }
     }
 
+    private String getVision_warn(int left_change, int right_change) {
+//        if(left_change>=0&&right_change>=0){
+//            int max = Math.max(left_change, right_change);
+//            if(max>5){
+//                return "warn_more_p";
+//            }else{
+//                return "warn_"+max+"_p";
+//            }
+//        }
+         if(left_change<0&&right_change<0){
+            int min = Math.min(left_change, right_change);
+            if(min<-5){
+                return "warn_more_n";
+            }else{
+                return "warn_"+min+"_n";
+            }
+        }else{
+             int max = Math.max(left_change, right_change);
+             if(max>5){
+                 return "warn_more_p";
+             }else{
+                 return "warn_"+max+"_p";
+             }
+        }
+    }
+
     private String getSuggest(double left, double right, int diff) {
-        String diffS=String.valueOf(diff);
-        if(diff>5){
-            diffS="more";
+        String diffS = String.valueOf(diff);
+        if (diff > 5) {
+            diffS = "more";
         }
         if (left <= 0) {
             return String.valueOf(right) + "_noleft";
@@ -145,9 +185,9 @@ public class ExecuteCompareService {
     }
 
     private String getEyeDesc(double left, double right, String date) {
-        if (left <= 0 && right <= 0) {
-            return "";
-        }
+//        if (left <= 0 && right <= 0) {
+//            return "";
+//        }
 
         return date + "右眼" + (right <= 0 ? "无数据" : EyeUtil.getRealEye(right)) + "左眼" + (left <= 0 ? "无数据" : EyeUtil.getRealEye(left));
 

@@ -42,7 +42,8 @@ public class ExcelUtil {
             case HSSFCell.CELL_TYPE_BOOLEAN:
                 return cell.getBooleanCellValue() + "";
             case HSSFCell.CELL_TYPE_ERROR:
-                return cell.getErrorCellValue() + "";
+                return "";
+                //return cell.getErrorCellValue() + "";
         }
         return "";
     }

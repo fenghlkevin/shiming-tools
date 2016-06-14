@@ -24,16 +24,17 @@ public class ExecuteGroupService {
         for (ExecuteParseExcelService.Student student : students) {
 
             String key = "";
-            while (true) {
-                int count = 1;
-                key = student.getMschool() + "_" + student.getMgrade() + "_" + student.getMclass() + "_" + count;
-                if (group.containsKey(key) && group.get(key).size() > 25) {
-                    count++;
-                    key = student.getMschool() + "_" + student.getMgrade() + "_" + student.getMclass() + "_" + count;
-                } else {
-                    break;
-                }
-            }
+            key = student.getMschool() + "_" + student.getMgrade() + "_" + student.getMclass() + "_" + student.getMgroup();
+//            key = student.getMschool() + "_" + student.getMgrade() + "_" + student.getMclass() + "_" + 0;
+//            while (true) {
+//
+//                if (group.containsKey(key) && group.get(key).size() >= 25) {
+//                    String s=key.split("_")[3];
+//                    key = student.getMschool() + "_" + student.getMgrade() + "_" + student.getMclass() + "_" + (Integer.valueOf(s)+1);
+//                } else {
+//                    break;
+//                }
+//            }
 
             List<String[]> groupStudents = null;
             if (!group.containsKey(key)) {

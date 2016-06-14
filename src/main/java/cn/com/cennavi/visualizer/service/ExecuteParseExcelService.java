@@ -44,7 +44,7 @@ public class ExecuteParseExcelService {
             if (!"2".equalsIgnoreCase(params.getDomethod())) {
                 student.setThis_check_right(getEyeValue(new Double(ExcelUtil.getCellValue(row, params.getThis_check(), "-1"))));
                 student.setThis_check_left(getEyeValue(new Double(ExcelUtil.getCellValue(row, params.getThis_check() + 1, "-1"))));
-                student.setMschool(ExcelUtil.getCellValue(row, params.getMclass()));
+                student.setMschool(ExcelUtil.getCellValue(row, params.getMschool()));
                 student.setMgrade(ExcelUtil.getCellValue(row, params.getMgrade()));
                 student.setMclass(ExcelUtil.getCellValue(row, params.getMclass()));
                 student.setMgroup(ExcelUtil.getCellValue(row, params.getMgroup()));

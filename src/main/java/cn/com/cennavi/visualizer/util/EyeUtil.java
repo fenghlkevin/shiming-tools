@@ -1,6 +1,15 @@
 package cn.com.cennavi.visualizer.util;
 
+import cn.com.cennavi.kfgis.util.SBase64;
+import cn.com.cennavi.kfgis.util.csv.*;
+import cn.com.cennavi.kfgis.util.csv.CSVReader;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.StringReader;
 import java.text.DecimalFormat;
+import java.util.List;
 
 /**
  * Created by fengh on 2016/6/1.
@@ -28,7 +37,17 @@ public class EyeUtil {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(EyeUtil.getRealEye(5));
+    public static void main(String[] args) throws IOException {
+        String file="C:\\Users\\fengh\\personal\\temp\\if_template_1 - 副本 (2).if";
+        FileInputStream fis=new FileInputStream(file);
+        byte[] bs=new byte[fis.available()];
+        fis.read(bs);
+        String s=new String(bs,"gbk");
+        System.out.println(s);
+        System.out.println(SBase64.encode(bs).length());
+        cn.com.cennavi.kfgis.util.csv.CSVReader csvReader = new cn.com.cennavi.kfgis.util.csv.CSVReaderImpl(new StringReader(s), cn.com.cennavi.kfgis.util.csv.CSVReader.DEFAULT_SEPARATOR, CSVReader.DEFAULT_QUOTE_CHARACTER, 1);
+        List<String[]> ss=csvReader.readAll();
+        System.out.println(ss.size());
+
     }
 }

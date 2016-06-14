@@ -43,8 +43,11 @@ public class ExecuteWordService {
                     paragraphs.add(targetParagraph);
                 }
             }
+            System.out.println(student.getStudent_name());
+//            if(student.getReplaceMap()==null){
+                this.replaceInParagraphs(student.getReplaceMap(), paragraphs);
+//            }
 
-            this.replaceInParagraphs(student.getReplaceMap(), paragraphs);
 
         }
 

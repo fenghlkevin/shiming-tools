@@ -155,17 +155,17 @@ public class ExecuteCompareService {
 //        }
          if(left_change<0&&right_change<0){
             int min = Math.min(left_change, right_change);
-            if(min<-5){
-                return "warn_more_n";
+            if(min<-7){
+                return "warn_-more";
             }else{
-                return "warn_"+min+"_n";
+                return "warn_"+min;
             }
         }else{
              int max = Math.max(left_change, right_change);
-             if(max>5){
-                 return "warn_more_p";
+             if(max>7){
+                 return "warn_more";
              }else{
-                 return "warn_"+max+"_p";
+                 return "warn_"+max;
              }
         }
     }

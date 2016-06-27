@@ -60,8 +60,8 @@ public class ExecuteCompareService {
 
                 count = 2;
 
-                left_change = (int) ((compareEye.getLast_left() - compareEye.getThis_left()) * 10);
-                right_change = (int) ((compareEye.getLast_right() - compareEye.getThis_right()) * 10);
+                left_change = (int) ((compareEye.getThis_left() * 10 - compareEye.getLast_left() * 10));
+                right_change = (int) ((compareEye.getThis_right() * 10 - compareEye.getLast_right() * 10));
             } else if (no_last1) {
                 compareEye.setThis_left(student.getThis_check_left());
                 compareEye.setThis_right(student.getThis_check_right());
@@ -71,8 +71,8 @@ public class ExecuteCompareService {
 
                 count = 2;
 
-                left_change = (int) ((compareEye.getLast_left() - compareEye.getThis_left()) * 10);
-                right_change = (int) ((compareEye.getLast_right() - compareEye.getThis_right()) * 10);
+                left_change = (int) ((compareEye.getThis_left() * 10 - compareEye.getLast_left() * 10));
+                right_change = (int) ((compareEye.getThis_right() * 10 - compareEye.getLast_right() * 10));
             } else if (no_last2) {
                 compareEye.setThis_left(student.getThis_check_left());
                 compareEye.setThis_right(student.getThis_check_right());
@@ -82,8 +82,8 @@ public class ExecuteCompareService {
 
                 count = 2;
 
-                left_change = (int) ((compareEye.getLast_left() - compareEye.getThis_left()) * 10);
-                right_change = (int) ((compareEye.getLast_right() - compareEye.getThis_right()) * 10);
+                left_change = (int) ((compareEye.getThis_left() * 10 - compareEye.getLast_left() * 10));
+                right_change = (int) ((compareEye.getThis_right() * 10 - compareEye.getLast_right() * 10));
             } else {
 //                compareEye.setLast_left(Math.min(student.getLast2_check_left(), student.getLast1_check_left()));
 //                compareEye.setLast_right(Math.min(student.getLast2_check_right(), student.getLast1_check_right()));
@@ -98,6 +98,7 @@ public class ExecuteCompareService {
                 left_change = (int) ((compareEye.getThis_left() * 10 - compareEye.getLast_left() * 10));
                 right_change = (int) ((compareEye.getThis_right() * 10 - compareEye.getLast_right() * 10));
             }
+
 //            }
 
             left_right_diff = Math.abs(((int) ((compareEye.getThis_left() * 10 - compareEye.getThis_right() * 10))));
